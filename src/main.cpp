@@ -43,6 +43,16 @@ void setup()
   I2C_BM8563_DateTypeDef dateStruct;
   I2C_BM8563_TimeTypeDef timeStruct;
 
+  // Check RTC Voltage Low flag
+  if(rtc.getVoltLow()) {
+    Serial.println("RTC low voltage.");
+    M5.Lcd.println("RTC low voltage.");
+  }
+  else {
+    Serial.println("RTC voltage good.");
+    M5.Lcd.println("RTC voltage good.");
+  }
+
   // Get RTC
   rtc.getDate(&dateStruct);
   rtc.getTime(&timeStruct);
